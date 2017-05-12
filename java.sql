@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-05-2017 a las 19:40:21
+-- Tiempo de generación: 11-05-2017 a las 19:36:13
 -- Versión del servidor: 5.5.54-0ubuntu0.14.04.1-log
 -- Versión de PHP: 5.5.9-1ubuntu4.21
 
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `basic_information` (
   `address` varchar(48) COLLATE utf8_bin NOT NULL,
   `email` varchar(48) COLLATE utf8_bin NOT NULL,
   `telephone_number` int(13) NOT NULL,
+  `img` varchar(500) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`binfo_id`),
   KEY `binfo_id` (`binfo_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
@@ -43,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `basic_information` (
 -- Volcado de datos para la tabla `basic_information`
 --
 
-INSERT INTO `basic_information` (`binfo_id`, `user`, `name`, `last_name`, `profession`, `address`, `email`, `telephone_number`) VALUES
-(1, 'rafa', 'Rafael', 'Cardenas', 'Web Developer', 'Barcelona. Spain', 'rmcardenas@jaumebalmes.net', 629983672),
-(2, 'edu', 'Eduardo', 'Zaldivar', 'Web Developer', 'Paris, France', 'ezaldivar@jaumebalmes.net', 635291192);
+INSERT INTO `basic_information` (`binfo_id`, `user`, `name`, `last_name`, `profession`, `address`, `email`, `telephone_number`, `img`) VALUES
+(1, 'rafa', 'Rafael', 'Cardenas', 'Web Developer', 'Barcelona. Spain', 'rmcardenas@jaumebalmes.net', 629983672, 'img/rafa/rafa.png'),
+(2, 'edu', 'Eduardo', 'Zaldivar', 'Web Developer', 'Paris, France', 'ezaldivar@jaumebalmes.net', 635291192, 'img/edu/edu.png');
 
 -- --------------------------------------------------------
 
