@@ -4,41 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Login Application</title>
 </head>
-<style>
-fieldset{
-border: blue 2px solid;
-}
-input { border: 1px solid #f00; 
-border-radius: 3px;}
-.inputSub { border: 1px solid blue;
-background: white;
-cursor: pointer}
-</style>
 <body>
-	<form action="loginPath" method="post">
-	<center>
-		<fieldset style="width: 300px">
-			<legend> Login to App </legend>
-			<table>
-			<tr>
-				<td colspan="2"><c:out value="${errorMsg}"/> </td>
-			</tr>
-				<tr>
-					<td>User ID</td>
-					<td><input type="text" name="username" required="required" /></td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td><input type="password" name="password" required="required" /></td>
-				</tr>
-				<tr>
-					<td><input class="inputSub" type="submit" value="Login" /></td>
-				</tr>
-			</table>
-		</fieldset>
-		</center>
+<header class="w3-container w3-teal">
+  <h3>Login CV Manager</h3>
+</header>
+<p><c:out value="${errorMsg}"/></p>
+<div class="w3-container w3-half w3-margin-top">
+	<form class="w3-container w3-card-4" action="loginPath" method="post">
+		<p>
+		<input class="w3-input" type="text" name="username" style="width:90%" required>
+		<label>Username</label></p>
+		<p>
+		<input class="w3-input" type="password" name="password" style="width:90%" required>
+		<label>Password</label></p>
+		<p>
+		<label>Level</label>
+		<select class="w3-select" name="level">
+		  <option value="1" selected>User</option>
+		  <option value="0">Admin</option>
+		</select></p>
+
+		<input class="w3-button w3-section w3-teal w3-ripple" type="submit" value="Login" />
 	</form>
+	</div>
 </body>
 </html>

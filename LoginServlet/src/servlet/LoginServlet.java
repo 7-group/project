@@ -23,22 +23,24 @@ public class LoginServlet extends HttpServlet {
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "ezaldivar";
 	
-    private static final String LOGIN_QUERY = "SELECT user,pass FROM login WHERE user=? and pass=?";
+    private static final String LOGIN_QUERY = "SELECT user,pass,login_id FROM login WHERE user=? and pass=? and level=?";
     private static final String HOME_PAGE_ADMIN = "./adminCV.jsp";
     private static final String HOME_PAGE_CV = "./userCV.jsp";
     private static final String LOGIN_PAGE = "./index.jsp";
 
 
     	        
-    	        
+    //getting request variables from login form
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strUserName = request.getParameter("username");
 		String strPassword = request.getParameter("password");
+		String strLevel = request.getParameter("level");
 		String strErrMsg = null;
 		HttpSession session = request.getSession();
 		boolean isValidLogon = false;
 		try {
-			isValidLogon = authenticateLogin(strUserName, strPassword);
+			//calling autenticateLogin for validating login
+			isValidLogon = authenticateLogin(strUserName, strPassword, strLevel);
 			if(isValidLogon) {
 				session.setAttribute("username", strUserName);
 			} else {
@@ -48,12 +50,12 @@ public class LoginServlet extends HttpServlet {
 			strErrMsg = "Unable to validate user / password in database";
 			
 		}
-
+		//When login is valid, so it will be redirected to the admin  or user CV page
 		if(isValidLogon) {
-			if(strUserName.equals("admin")){
+			if(strLevel.equals("0")){
 				//Admin page
 				response.sendRedirect(HOME_PAGE_ADMIN);
-			}else{
+			}else if(strLevel.equals("1")){
 				//Common user's CV
 				response.sendRedirect(HOME_PAGE_CV);
 			}
@@ -64,8 +66,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 	}
-	
-	private boolean authenticateLogin(String strUserName, String strPassword) throws Exception {
+	//it's getting three vars that will be validated on the mysql login table
+	private boolean authenticateLogin(String strUserName, String strPassword, String strLevel) throws Exception {
 		boolean isValid = false;
 		Connection conn = null;
 		try {
@@ -73,9 +75,11 @@ public class LoginServlet extends HttpServlet {
 			PreparedStatement prepStmt = conn.prepareStatement(LOGIN_QUERY);
 			prepStmt.setString(1, strUserName);
 			prepStmt.setString(2, strPassword);
+			prepStmt.setString(3, strLevel);
 			ResultSet rs = prepStmt.executeQuery();
 			if(rs.next()) {
 				System.out.println("User login is valid in DB");
+
 				isValid = true;
 			}
 		} catch(Exception e) {
