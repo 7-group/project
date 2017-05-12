@@ -3,6 +3,14 @@
 <%@ page import ="java.sql.*,java.util.Properties" %>
 <%@ page import="java.io.*,java.util.*,java.net.*" %>
 <%
+	String loginOut = request.getParameter("login");
+	if(session.getAttribute("username") == null){
+	response.sendRedirect("index.jsp");
+	}
+/* 	if(loginOut.equals("out")){
+		response.sendRedirect("index.jsp");
+		} */
+
 try
 {
    // BBDD Connection
@@ -152,7 +160,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-twothird">
     
       <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience <span style="float:right"><a href="userCV.jsp?login=out">Log out</a></span></h2>
         <div class="w3-container">
           <h5 class="w3-opacity"><b>Front End Developer / w3schools.com</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
