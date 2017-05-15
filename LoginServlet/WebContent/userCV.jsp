@@ -3,11 +3,14 @@
 <%@ page import ="java.sql.*,java.util.Properties" %>
 <%@ page import="java.io.*,java.util.*,java.net.*" %>
 <%
-	String loginOut = request.getParameter("logoff");
+	//String loginOut = request.getParameter("logoff");
+	//Restringe la visualización del fichero si no ha iniciado sesión
+	//String loginOut = request.getParameter("logoff");
+	//String loginOut = request.getParameter("logoff");
 	if(session.getAttribute("username") == null){
 	response.sendRedirect("index.jsp");
 	}
-	
+	//recoge por get la url para cerrar la sesión
  	if(request.getParameter("logoff") != null){
  		session.setAttribute("username", null);
  		//session.invalidate();
